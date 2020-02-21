@@ -90,7 +90,11 @@ namespace CowboyCafe.Data
         /// <returns>String describing Texas Tea</returns>
         public override string ToString()
         {
-            return Size + " Texas Tea";
+            if(Sweet)
+            {
+                return Size + " Texas Sweet Tea";
+            }
+            return Size + " Texas Plain Tea";
         }
     }
 }
