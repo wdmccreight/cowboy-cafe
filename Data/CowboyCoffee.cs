@@ -82,5 +82,18 @@ namespace CowboyCafe.Data
                 return instructions;
             }
         }
+
+        /// <summary>
+        /// The string representation of this Cowboy Coffee
+        /// </summary>
+        /// <returns>String describing Cowboy Coffee</returns>
+        public override string ToString()
+        {
+            if(Decaf)
+            {
+                return Size + " Decaf Cowboy Coffee";
+            }
+            return Size + " Cowboy Coffee";
+        }
     }
 }

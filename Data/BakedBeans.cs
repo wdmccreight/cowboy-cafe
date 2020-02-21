@@ -50,5 +50,13 @@ namespace CowboyCafe.Data
             }
         }
 
+        /// <summary>
+        /// The string representation of this Baked Beans
+        /// </summary>
+        /// <returns>String describing Baked Beans</returns>
+        public override string ToString()
+        {
+            return Size + " Baked Beans";
+        }
     }
 }

@@ -83,5 +83,14 @@ namespace CowboyCafe.Data
                 return instructions;
             }
         }
+
+        /// <summary>
+        /// The string representation of this Texas Tea
+        /// </summary>
+        /// <returns>String describing Texas Tea</returns>
+        public override string ToString()
+        {
+            return Size + " Texas Tea";
+        }
     }
 }

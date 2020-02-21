@@ -50,5 +50,14 @@ namespace CowboyCafe.Data
             }
         }
 
+        /// <summary>
+        /// The string representation of this Pan De Campo
+        /// </summary>
+        /// <returns>String describing Pan De Campo</returns>
+        public override string ToString()
+        {
+            return Size + " Pan de Campo";
+        }
+
     }
 }

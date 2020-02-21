@@ -87,6 +87,15 @@ namespace CowboyCafe.Data
                 return instructions;
             }
         }
+
+        /// <summary>
+        /// The string representation of this Cowpoke Chili
+        /// </summary>
+        /// <returns>String describing Cowpoke Chili</returns>
+        public override string ToString()
+        {
+            return "Cowpoke Chili";
+        }
     }
 }
 

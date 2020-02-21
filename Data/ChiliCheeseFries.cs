@@ -50,5 +50,13 @@ namespace CowboyCafe.Data
             }
         }
 
+        /// <summary>
+        /// The string representation of this Chili Cheese Fry
+        /// </summary>
+        /// <returns>String describing Chili Cheese Fries</returns>
+        public override string ToString()
+        {
+            return Size + " Chili Cheese Fries";
+        }
     }
 }

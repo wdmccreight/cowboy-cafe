@@ -75,5 +75,14 @@ namespace CowboyCafe.Data
                 return instructions;
             }
         }
+
+        /// <summary>
+        /// The string representation of this Water
+        /// </summary>
+        /// <returns>String describing Water</returns>
+        public override string ToString()
+        {
+            return Size + " Water";
+        }
     }
 }

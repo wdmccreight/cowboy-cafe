@@ -56,6 +56,13 @@ namespace CowboyCafe.Data
             }
         }
 
-
+        /// <summary>
+        /// The string representation of this Angry Chicken
+        /// </summary>
+        /// <returns>String describing Angry Chicken</returns>
+        public override string ToString()
+        {
+            return "Angry Chicken";
+        }
     }
 }
