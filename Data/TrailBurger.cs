@@ -7,7 +7,7 @@ namespace CowboyCafe.Data
     /// <summary>
     /// A class representing the Trail Burger entree
     /// </summary>
-    public class TrailBurger : Entree
+    public class TrailBurger : Entree, IOrderItem
     {
         /// <summary>
         /// If entree has Bun.

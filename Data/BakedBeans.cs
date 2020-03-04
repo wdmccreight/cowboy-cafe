@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CowboyCafe.Data
 {
-    public class BakedBeans : Side
+    public class BakedBeans : Side, IOrderItem
     {
         /// <summary>
         /// Get calories of the side 
@@ -49,6 +49,18 @@ namespace CowboyCafe.Data
 
             }
         }
+
+        /// <summary>
+        /// Get special instructions of side
+        /// </summary>
+        public List<string> SpecialInstructions
+        {
+            get
+            {
+                return new List<string>();
+            }
+        }
+
 
         /// <summary>
         /// The string representation of this Baked Beans

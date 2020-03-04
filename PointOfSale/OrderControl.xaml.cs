@@ -13,7 +13,6 @@ using System.Windows.Shapes;
 
 using CowboyCafe.Data;
 
-
 namespace PointOfSale
 {
     /// <summary>
@@ -24,90 +23,25 @@ namespace PointOfSale
         public OrderControl()
         {
             InitializeComponent();
-            
-            
+            DataContext = new Order();
+            Order.OrderNumber++;
         }
 
-        #region Entree Add-Button Clicks
-
-        private void AddAngryChickenButton_Click(object sender, RoutedEventArgs e)
+        private void ItemSelectionButton_Click(object sender, RoutedEventArgs e)
         {
-            OrderListView.Items.Add(new AngryChicken());
+
         }
 
-        private void AddCowpokeChiliButton_Click(object sender, RoutedEventArgs e)
+        private void CancelOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            OrderListView.Items.Add(new CowpokeChili());
+            DataContext = new Order();
+            Order.OrderNumber++;
         }
 
-        private void AddPecosPulledPork_Click(object sender, RoutedEventArgs e)
+        private void CompleteOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            OrderListView.Items.Add(new PecosPulledPork());
+            DataContext = new Order();
+            Order.OrderNumber++;
         }
-
-        private void AddRustlersRibsButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new RustlersRibs());
-        }
-
-        private void AddTrailBurgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new TrailBurger());
-        }
-
-        private void AddDakotaDoubleBurger_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new DakotaDoubleBurger());
-        }
-
-        private void AddTexasTripleBurger_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new TexasTripleBurger());
-        }
-        #endregion
-
-        #region Side Add-Button Clicks
-        private void AddBakedBeansButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new BakedBeans());
-        }
-
-        private void AddChiliCheeseFriesButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new ChiliCheeseFries());
-        }
-
-        private void AddCornDodgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new CornDodgers());
-        }
-
-        private void AddPanDeCampoButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new PanDeCampo());
-        }
-        #endregion
-
-        #region Drink Add-Button Clicks
-        private void AddCowboyCoffeeButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new CowboyCoffee());
-        }
-
-        private void AddJerkedSodaButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new JerkedSoda());
-        }
-
-        private void AddTexasTeaButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new TexasTea());
-        }
-
-        private void AddWaterButton_Click(object sender, RoutedEventArgs e)
-        {
-            OrderListView.Items.Add(new Water());
-        }
-        #endregion
     }
 }

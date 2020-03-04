@@ -7,7 +7,7 @@ namespace CowboyCafe.Data
     /// <summary>
     /// A class representing the Pecos Pulled Pork entree
     /// </summary>
-    public class PecosPulledPork : Entree
+    public class PecosPulledPork : Entree, IOrderItem
     {
         /// <summary>
         /// If the entree has bread

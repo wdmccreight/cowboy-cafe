@@ -7,7 +7,7 @@ namespace CowboyCafe.Data
     /// <summary>
     /// A class representing the Angry Chicken entree
     /// </summary>
-    public class AngryChicken : Entree
+    public class AngryChicken : Entree, IOrderItem
     {
         /// <summary>
         /// If the entree has bread

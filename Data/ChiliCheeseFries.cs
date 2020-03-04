@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CowboyCafe.Data
 {
-    public class ChiliCheeseFries : Side
+    public class ChiliCheeseFries : Side, IOrderItem
     {
         /// <summary>
         /// Get calories of the side 
@@ -47,6 +47,17 @@ namespace CowboyCafe.Data
                         throw new NotImplementedException();
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// Get special instructions of side
+        /// </summary>
+        public List<string> SpecialInstructions
+        {
+            get
+            {
+                return new List<string>();
             }
         }
 

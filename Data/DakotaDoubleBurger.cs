@@ -7,7 +7,7 @@ namespace CowboyCafe.Data
     /// <summary>
     /// A class representing the Dakota Double Burger entree
     /// </summary>
-    public class DakotaDoubleBurger : Entree
+    public class DakotaDoubleBurger : Entree, IOrderItem
     {
         /// <summary>
         /// If entree has Bun.
