@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Author: Zachery Brunner
+ * Class: OrderSummaryControl.xaml.cs
+ * Purpose: Displays the everything related to the order
+ */
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using CowboyCafe.Data;
+using PointOfSale.ExtensionMethods;
 
 namespace PointOfSale
 {
@@ -20,20 +16,44 @@ namespace PointOfSale
     /// </summary>
     public partial class OrderSummaryControl : UserControl
     {
+        /// <summary>
+        /// Public constructor
+        /// </summary>
         public OrderSummaryControl()
         {
             InitializeComponent();
         }
 
-        private void OnRemoveButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Deleted the specified item from the order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteItemButton_Click(object sender, RoutedEventArgs e)
         {
-            if(DataContext is Order order)
-            {
-                if(sender is Button button)
-                {
-                    order.Remove(button.DataContext as IOrderItem);
-                }
-            }
+            Order o = (Order)DataContext;
+            IOrderItem i = (IOrderItem)((Button)sender).DataContext;
+            o.Remove(i);
+        }
+
+        /// <summary>
+        /// Switches the screen to the selected item in the order list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrderListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FrameworkElement elem;
+            IOrderItem i = (IOrderItem)((ListBox)sender).SelectedItem;
+            var orderControl = this.FindAncestor<OrderControl>();
+
+            //Weird base case here where if you delete the last item while the customization screen is still up it crashes and dies
+            if (i != null)
+                elem = (FrameworkElement)i.Screen;
+            else
+                elem = new MenuItemSelectionControl();
+
+            orderControl?.SwapScreen(elem);
         }
     }
 }

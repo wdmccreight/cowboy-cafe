@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Author: Zachery Brunner
+ * Class: OrderControl.xaml.cs
+ * Purpose: Backend logic for the user controls
+ */
+using System;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using CowboyCafe.Data;
+using CowboyCafe.Data.Entrees;
+using CowboyCafe.Data.Sides;
+using CowboyCafe.Data.Drinks;
 
+using PointOfSale.ExtensionMethods;
+using PointOfSale.CustomizationScreens;
 
 namespace PointOfSale
 {
@@ -21,137 +23,209 @@ namespace PointOfSale
     /// </summary>
     public partial class MenuItemSelectionControl : UserControl
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MenuItemSelectionControl()
         {
             InitializeComponent();
         }
 
-        #region Entree Add-Button Clicks
-
-        private void AddAngryChickenButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// This method adds entrees to the list by converting the
+        /// sender object to a button and filtering on the name of the button
+        /// that was pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addEntreeToList(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Order order)
+            //Ensure the DataContext is an Order and not NULL
+            if (DataContext is Order data)
             {
-                order.Add(new AngryChicken());
-            }
-            
-        }
+                //Ensure the sender is on of buttons
+                if (sender is Button)
+                {
+                    IOrderItem item;
+                    FrameworkElement screen;
+                    var orderControl = this.FindAncestor<OrderControl>();
 
-        private void AddCowpokeChiliButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new CowpokeChili());
-            }
-        }
+                    //Filter which button was pressed based on name
+                    switch (((Button)sender).Name)
+                    {
+                        //Angry Chicken
+                        case "AngryChickenButton":
+                            item = new AngryChicken();
+                            screen = new AngryChickenCustomization();
+                        break;
+                        
+                        //Cowpoke Chili
+                        case "CowpokeChiliButton":
+                            item = new CowpokeChili();
+                            screen = new CowpokeChiliCustomization();
+                        break;
+                        
+                        //Dakota Double
+                        case "DakotaDoubleButton":
+                            item = new DakotaDoubleBurger();
+                            screen = new DakotaDoubleCustomization();
+                        break;
 
-        private void AddPecosPulledPork_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new PecosPulledPork());
-            }
-        }
+                        //Pecos Pulled Pork
+                        case "PecosPulledPorkButton":
+                            item = new PecosPulledPork();
+                            screen = new PecosPulledPorkCustomization();
+                        break;
+                        
+                        //Rustlers Ribs
+                        case "RustlersRibsButton":
+                            item = new RustlersRibs();
+                            screen = new RustlersRibsCustomization();
+                        break;
 
-        private void AddRustlersRibsButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new RustlersRibs());
-            }
-        }
-
-        private void AddTrailBurgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new TrailBurger());
-            }
-        }
-
-        private void AddDakotaDoubleBurger_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new DakotaDoubleBurger());
-            }
-        }
-
-        private void AddTexasTripleBurger_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new TexasTripleBurger());
-            }
-        }
-        #endregion
-
-        #region Side Add-Button Clicks
-        private void AddBakedBeansButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new BakedBeans());
-            }
-        }
-
-        private void AddChiliCheeseFriesButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new ChiliCheeseFries());
-            }
-        }
-
-        private void AddCornDodgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new CornDodgers());
+                        //Texas Triple
+                        case "TexasTripleButton":
+                            item = new TexasTripleBurger();
+                            screen = new TexasTripleCustomization();
+                        break;
+                        
+                        //Trail Burger
+                        case "TrailBurgerButton":
+                            item = new TrailBurger();
+                            screen = new TrailBurgerCustomization();
+                        break;
+                        
+                        //Default case, should never be reached. Unless we expland our entree menu and forget to add the case statement ;P
+                        default:
+                            throw new NotImplementedException("Unknown entree button clicked");
+                    }
+                    //Set the datacontext of the screen to the item and set the items screen property equal to the screen
+                    screen.DataContext = item;
+                    item.Screen = screen;
+                    
+                    //Add the item to the order and swap the screen
+                    data.Add(item);
+                    orderControl?.SwapScreen(screen);
+                }
             }
         }
 
-        private void AddPanDeCampoButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// This method adds sides to the list by converting the
+        /// sender object to a button and filtering on the name of the button
+        /// that was pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addSideToList(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Order order)
+            //Ensure the DataContext is an Order and not NULL
+            if (DataContext is Order data)
             {
-                order.Add(new PanDeCampo());
-            }
-        }
-        #endregion
+                //Ensure the sender is on of buttons
+                if (sender is Button)
+                {
+                    IOrderItem item;
+                    FrameworkElement screen = new SizeChangingCustomization();
+                    var orderControl = this.FindAncestor<OrderControl>();
 
-        #region Drink Add-Button Clicks
-        private void AddCowboyCoffeeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new CowboyCoffee());
+                    //Filter which button was pressed based on name
+                    switch (((Button)sender).Name)
+                    {
+                        //Baked Beans
+                        case "BakedBeansButton":
+                            item = new BakedBeans();
+                        break;
+                        
+                        //Chili Cheese Fries
+                        case "ChiliCheeseFriesButton":
+                            item = new ChiliCheeseFries();
+                            break;
+                        
+                        //Corn Dodgers
+                        case "CornDodgersButton":
+                            item = new CornDodgers();
+                        break;
+                        
+                        //Pan De Campo
+                        case "PanDeCampoButton":
+                            item = new PanDeCampo();
+                        break;
+                        
+                        //This should never be reached unless we add more sides and forget to add the case statements ;P
+                        default:
+                            throw new NotImplementedException("Unknown side button clicked");
+                    }
+                    //Set the datacontext of the screen to the item and set the items screen property equal to the screen
+                    screen.DataContext = item;
+                    item.Screen = screen;
+
+                    //Add the item to the order and swap the screen
+                    data.Add(item);
+                    orderControl?.SwapScreen(screen);
+                }
             }
         }
 
-        private void AddJerkedSodaButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// This method adds drinks to the list by converting the
+        /// sender object to a button and filtering on the name of the button
+        /// that was pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addDrinkToList(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Order order)
+            //Ensure the DataContext is an Order and not NULL
+            if (DataContext is Order data)
             {
-                order.Add(new JerkedSoda());
-            }
-        }
+                //Ensure the sender is on of buttons
+                if (sender is Button)
+                {
+                    IOrderItem item;
+                    FrameworkElement screen;
+                    var orderControl = this.FindAncestor<OrderControl>();
 
-        private void AddTexasTeaButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new TexasTea());
-            }
-        }
+                    //Filter which button was pressed based on name
+                    switch (((Button)sender).Name)
+                    {
+                        //Cowboy Coffee
+                        case "CowboyCoffeeButton":
+                            item = new CowboyCoffee();
+                            screen = new CowboyCoffeeCustomization();
+                        break;
+                        
+                        //Jerked Soda
+                        case "JerkedSodaButton":
+                            item = new JerkedSoda();
+                            screen = new JerkedSodaCustomization();
+                        break;
+                        
+                        //Texas Tea
+                        case "TexasTeaButton":
+                            item = new TexasTea();
+                            screen = new TexasTeaCustomization();
+                        break;
+                        
+                        //Water
+                        case "WaterButton":
+                            item = new Water();
+                            screen = new WaterCustomization();
+                        break;
 
-        private void AddWaterButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is Order order)
-            {
-                order.Add(new Water());
+                        //This should never be reached unless we add more sides and forget to add the case statements ;P
+                        default:
+                            throw new NotImplementedException("Unknown drink button clicked");
+                    }
+                    //Set the datacontext of the screen to the item and set the items screen property equal to the screen
+                    screen.DataContext = item;
+                    item.Screen = screen;
+
+                    //Add the item to the order and swap the screen
+                    data.Add(item);
+                    orderControl?.SwapScreen(screen);
+                }
             }
         }
-        #endregion
     }
 }

@@ -1,0 +1,96 @@
+﻿<!--
+    Author: Zachery Brunner
+    Class: TexasTripleCustomization.xaml
+    Purpose: xaml for the customization page of texas triple burger-->
+    
+<UserControl x:Class="PointOfSale.CustomizationScreens.TexasTripleCustomization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.CustomizationScreens"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="600">
+
+    <!--Beginning of the grid-->
+    <Grid>
+        <!--11 Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition/> <!--Texas Triple Customization Label-->
+            <RowDefinition/> <!--Bun-->
+            <RowDefinition/> <!--Ketchup-->
+            <RowDefinition/> <!--Mustard-->
+            <RowDefinition/> <!--Pickle-->
+            <RowDefinition/> <!--Cheese-->
+            <RowDefinition/> <!--Tomato-->
+            <RowDefinition/> <!--Lettuce-->
+            <RowDefinition/> <!--Mayo-->
+            <RowDefinition/> <!--Bacon-->
+            <RowDefinition/> <!--Egg-->
+        </Grid.RowDefinitions>
+
+        <!--Texas Triple Customization Label-->
+        <Label x:Name="TexasTripleCustomizationLabel"
+               Content="TEXAS TRIPLE"/>
+
+        <!--Bun-->
+        <CheckBox x:Name="BunCheckbox"
+                  Grid.Row="1"
+                  Content="INCLUDE BUN"
+                  IsChecked="{Binding Path=Bun}"/>
+        
+        <!--Ketchup-->
+        <CheckBox x:Name="KetchupCheckbox"
+                  Grid.Row="2"
+                  Content="INCLUDE KETCHUP"
+                  IsChecked="{Binding Path=Ketchup}"/>
+
+        <!--Mustard-->
+        <CheckBox x:Name="MustardCheckbox"
+                  Grid.Row="3"
+                  Content="INCLUDE MUSTARD"
+                  IsChecked="{Binding Path=Mustard}"/>
+
+        <!--Pickle-->
+        <CheckBox x:Name="PickleCheckbox"
+                  Grid.Row="4"
+                  Content="INCLUDE PICKLE"
+                  IsChecked="{Binding Path=Pickle}"/>
+
+        <!--Cheese-->
+        <CheckBox x:Name="CheeseCheckbox"
+                  Grid.Row="5"
+                  Content="INCLUDE CHEESE"
+                  IsChecked="{Binding Path=Cheese}"/>
+
+        <!--Tomato-->
+        <CheckBox x:Name="TomatoCheckbox"
+                  Grid.Row="6"
+                  Content="INCLUDE TOMATO"
+                  IsChecked="{Binding Path=Tomato}"/>
+
+        <!--Lettuce-->
+        <CheckBox x:Name="LettuceCheckbox"
+                  Grid.Row="7"
+                  Content="INCLUDE LETTUCE"
+                  IsChecked="{Binding Path=Lettuce}"/>
+
+        <!--Mayo-->
+        <CheckBox x:Name="MayoCheckbox"
+                  Grid.Row="8"
+                  Content="INCLUDE MAYO"
+                  IsChecked="{Binding Path=Mayo}"/>
+        
+        <!--Bacon-->
+        <CheckBox x:Name="BaconCheckbox"
+                  Grid.Row="9"
+                  Content="INCLUDE BACON"
+                  IsChecked="{Binding Path=Bacon}"/>
+        
+        <!--Egg-->
+        <CheckBox x:Name="EggCheckbox"
+                  Grid.Row="10"
+                  Content="INCLUDE EGG"
+                  IsChecked="{Binding Path=Egg}"/>
+    </Grid>
+</UserControl>

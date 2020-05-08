@@ -1,24 +1,39 @@
-﻿using System;
+﻿/* Author: Zachery Brunner
+ * Class: IOrderItem.cs
+ * Purpose: This interface is used to standardize the items that will be ordered
+ */
 using System.Collections.Generic;
-using System.Text;
 
 namespace CowboyCafe.Data
 {
     /// <summary>
-    /// An interface representing a single item in an order
+    /// Interface for all items on the cowboy cafe menu
     /// </summary>
     public interface IOrderItem
     {
         /// <summary>
-        /// The price of this order item
+        /// Allows the reciept to bind to the ToString method
         /// </summary>
-        double Price { get; }
+        public virtual string Name => ToString();
 
         /// <summary>
-        /// The special instructions for this order item
+        /// The is the screen associated with the IOrderItem
         /// </summary>
-        List<string> SpecialInstructions { get; }
+        public object Screen { get; set; }
 
+        /// <summary>
+        /// Gets the price of the item
+        /// </summary>
+        public double Price { get; }
 
+        /// <summary>
+        /// Gets the calories of the entree
+        /// </summary>
+        public uint Calories { get; }
+
+        /// <summary>
+        /// Gets the list of special instructions for the current item
+        /// </summary>
+        public List<string> SpecialInstructions { get; }
     }
 }

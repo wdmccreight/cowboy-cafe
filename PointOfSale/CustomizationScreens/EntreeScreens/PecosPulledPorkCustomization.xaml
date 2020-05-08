@@ -1,0 +1,40 @@
+﻿<!--
+    Author: Zachery Brunner
+    Class: PecosPulledPorkCustomization.xaml
+    Purpose: xaml for the customization page of pecos pulled pork -->
+    
+<UserControl x:Class="PointOfSale.CustomizationScreens.PecosPulledPorkCustomization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.CustomizationScreens"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="600">
+
+    <!--Beginning of the grid-->
+    <Grid>
+        <!--3 Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition/> <!--Pecos Pulled Pork Customization Label-->
+            <RowDefinition/> <!--Pickle-->
+            <RowDefinition/> <!--Bread-->
+        </Grid.RowDefinitions>
+
+        <!--Pecos Pulled Pork Customization Label-->
+        <Label x:Name="PecosPulledPorkCustomizationLabel"
+               Content="PECOS PULLED PORK"/>
+
+        <!--Pickle-->
+        <CheckBox x:Name="PickleCheckbox"
+                  Grid.Row="1"
+                  Content="INCLUDE PICKLE"
+                  IsChecked="{Binding Path=Pickle}"/>
+
+        <!--Bread-->
+        <CheckBox x:Name="BreadCheckbox"
+                  Grid.Row="2"
+                  Content="INCLUDE BREAD"
+                  IsChecked="{Binding Path=Bread}"/>
+    </Grid>
+</UserControl>

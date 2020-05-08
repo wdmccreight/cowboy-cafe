@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace CowboyCafe.Data
 {
     /// <summary>
@@ -8,6 +9,8 @@ namespace CowboyCafe.Data
     /// </summary>
     public class CowpokeChili : Entree, IOrderItem
     {
+        
+
         private bool cheese = true;
         /// <summary>
         /// If the chili is topped with cheese
@@ -15,7 +18,11 @@ namespace CowboyCafe.Data
         public bool Cheese
         {
             get { return cheese; }
-            set { cheese = value; }
+            set 
+            { 
+                cheese = value;
+                NotifyOfPropertyChange(new List<string>() { "Cheese", "SpecialInstructions" });
+            }
         }
 
         private bool sourCream = true;
@@ -96,6 +103,8 @@ namespace CowboyCafe.Data
         {
             return "Cowpoke Chili";
         }
-    }
+
+        
+    }        
 }
 

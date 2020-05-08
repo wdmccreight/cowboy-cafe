@@ -1,0 +1,54 @@
+﻿<!--
+    Author: Zachery Brunner
+    Class: TexasTeaCustomization.xaml
+    Purpose: xaml for the customization page of texas tea-->
+    
+<UserControl x:Class="PointOfSale.CustomizationScreens.TexasTeaCustomization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.CustomizationScreens"
+             mc:Ignorable="d" 
+            d:DesignHeight="650" d:DesignWidth="600">
+    
+    <!--Start of the grid-->
+    <Grid>
+        <!--5 Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition/> <!--Texas Tea Customization Label-->
+            <RowDefinition/> <!--Ice-->
+            <RowDefinition/> <!--Sweet-->
+            <RowDefinition/> <!--Lemon-->
+            <RowDefinition Height="270"/> <!--Size-->
+        </Grid.RowDefinitions>
+
+        <!--Texas Tea Customization Label-->
+        <Label x:Name="TexasTeaCustomizationLabel"
+               Content="TEXAS TEA"/>
+        
+        <!--Ice-->
+        <CheckBox x:Name="IceCheckbox"
+                  Grid.Row="1"
+                  Content="INCLUDE ICE"
+                  IsChecked="{Binding Path=Ice}"/>
+
+        <!--Sweet-->
+        <CheckBox x:Name="SweetCheckbox"
+                  Grid.Row="2"
+                  Content="INCLUDE SWEETNER"
+                  IsChecked="{Binding Path=Sweet}"/>
+        
+        <!--Lemon-->
+        <CheckBox x:Name="LemonCheckbox"
+                  Grid.Row="3"
+                  Content="INCLUDE LEMON"
+                  IsChecked="{Binding Path=Lemon}"/>
+
+        <!--Size-->
+        <Border x:Name="SizeBorder"
+                Grid.Row="4">
+            <local:SizeChangingCustomization/>
+        </Border>
+    </Grid>
+</UserControl>

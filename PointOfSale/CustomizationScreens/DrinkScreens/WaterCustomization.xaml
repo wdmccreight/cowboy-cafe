@@ -1,0 +1,47 @@
+﻿<!--
+    Author: Zachery Brunner
+    Class: WaterCustomization.xaml
+    Purpose: xaml for the customization page of water-->
+
+<UserControl x:Class="PointOfSale.CustomizationScreens.WaterCustomization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.CustomizationScreens"
+             mc:Ignorable="d" 
+            d:DesignHeight="650" d:DesignWidth="600">
+
+    <!--Start of the grid-->
+    <Grid>
+        <!--4 Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition/> <!--Water Customization Label-->
+            <RowDefinition/> <!--Ice-->
+            <RowDefinition/> <!--Lemon-->
+            <RowDefinition Height="270"/> <!--Size-->
+        </Grid.RowDefinitions>
+
+        <!--Water Customization Label-->
+        <Label x:Name="WaterCustomizationLabel"
+               Content="WATER"/>
+
+        <!--Ice-->
+        <CheckBox x:Name="IceCheckbox"
+                  Grid.Row="1"
+                  Content="INCLUDE ICE"
+                  IsChecked="{Binding Path=Ice}"/>
+
+        <!--Lemon-->
+        <CheckBox x:Name="LemonCheckbox"
+                  Grid.Row="2"
+                  Content="INCLUDE LEMON"
+                  IsChecked="{Binding Path=Lemon}"/>
+
+        <!--Size-->
+        <Border x:Name="SizeBorder"
+                Grid.Row="3">
+            <local:SizeChangingCustomization/>
+        </Border>
+    </Grid>
+</UserControl>
