@@ -4,11 +4,11 @@
  */
 using System.Collections.Generic;
 
-using CowboyCafe.Data.Entrees;
-using CowboyCafe.Data.Drinks;
-using CowboyCafe.Data.Sides;
+//using CowboyCafe.Data.Entrees;
+//using CowboyCafe.Data.Drinks;
+//using CowboyCafe.Data.Sides;
 
-using Size = CowboyCafe.Data.Enums.Size;
+//using Size = CowboyCafe.Data.Enums.Size;
 
 namespace CowboyCafe.Data
 {
@@ -56,21 +56,23 @@ namespace CowboyCafe.Data
             List<IOrderItem> sides = new List<IOrderItem>();
 
             /* Add all of the sides */
-            sides.Add(new BakedBeans(Size.Small));
-            sides.Add(new BakedBeans(Size.Medium));
-            sides.Add(new BakedBeans(Size.Large));
+            foreach (Size size in Size.GetValues(typeof(Size)))
+            {
+                var beans = new BakedBeans();
+                var fries = new ChiliCheeseFries();
+                var dodgers = new CornDodgers();
+                var campo = new PanDeCampo();
 
-            sides.Add(new ChiliCheeseFries(Size.Small)); 
-            sides.Add(new ChiliCheeseFries(Size.Medium));
-            sides.Add(new ChiliCheeseFries(Size.Large));
+                beans.Size = size;
+                fries.Size = size;
+                dodgers.Size = size;
+                campo.Size = size;
 
-            sides.Add(new PanDeCampo(Size.Small));
-            sides.Add(new PanDeCampo(Size.Medium));
-            sides.Add(new PanDeCampo(Size.Large));
-
-            sides.Add(new CornDodgers(Size.Small));
-            sides.Add(new CornDodgers(Size.Medium));
-            sides.Add(new CornDodgers(Size.Large));
+                sides.Add(beans);
+                sides.Add(fries);
+                sides.Add(dodgers);
+                sides.Add(campo);
+            }
 
             return sides;
         }
@@ -84,17 +86,23 @@ namespace CowboyCafe.Data
             List<IOrderItem> drinks = new List<IOrderItem>();
 
             /* Add all of the drinks */
-            drinks.Add(new CowboyCoffee(Size.Small));
-            drinks.Add(new CowboyCoffee(Size.Medium));
-            drinks.Add(new CowboyCoffee(Size.Large));
+            foreach (Size size in Size.GetValues(typeof(Size)))
+            {
+                var coffee = new CowboyCoffee();
+                var soda = new JerkedSoda();
+                var tea = new TexasTea();
 
-            drinks.Add(new JerkedSoda(Size.Small));
-            drinks.Add(new JerkedSoda(Size.Medium));
-            drinks.Add(new JerkedSoda(Size.Large));
 
-            drinks.Add(new TexasTea(Size.Small));
-            drinks.Add(new TexasTea(Size.Medium));
-            drinks.Add(new TexasTea(Size.Large));
+                coffee.Size = size;
+                soda.Size = size;
+                tea.Size = size;
+
+
+                drinks.Add(coffee);
+                drinks.Add(soda);
+                drinks.Add(tea);
+
+            }
 
             drinks.Add(new Water());
 

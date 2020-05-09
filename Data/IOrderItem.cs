@@ -19,7 +19,7 @@ namespace CowboyCafe.Data
         /// <summary>
         /// The is the screen associated with the IOrderItem
         /// </summary>
-        public object Screen { get; set; }
+        //public object Screen { get; set; }
 
         /// <summary>
         /// Gets the price of the item

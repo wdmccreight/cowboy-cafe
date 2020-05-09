@@ -30,11 +30,11 @@
 
 
         <div id="filters">
-            <h3>Types Of Items (Nothing checked, shows all items)</h3>
+            <h3>Types Of Items</h3>
             @foreach (string s in CowboyCafe.Data.Menu.TypeOfItems)
             {
                 <label>
-                    <input type="checkbox" name="typeOfItems" value="@s" checked="@Model.typeOfItems.Contains(s)"/>
+                    <input type="checkbox" name="typeOfItems" value="@s" checked="@Model.typeOfItems.Contains(s)" />
                     @s
                 </label>
             }
@@ -42,33 +42,36 @@
             <h3>Calories</h3>
             <div>
                 Between Calorie Minimum
-                <input name="CalorieMin" type="number" min="0" max="1000" step="1" placeholder="0" value="@Model.CalorieMin"/>
+                <input name="CalorieMin" type="number" min="0" max="1000" step="1" placeholder="0" value="@Model.CalorieMin" />
                 and Calorie Maximum
-                <input name="CalorieMax" type="number" min="0" max="1000" step="1" placeholder="1000" value="@Model.CalorieMax"/>
+                <input name="CalorieMax" type="number" min="0" max="1000" step="1" placeholder="1000" value="@Model.CalorieMax" />
             </div>
 
 
             <h3>Price</h3>
             <div>
                 Between $
-                <input name="PriceMin" type="number" min="0.00" max="100" step=".01" placeholder="0" value="@Model.PriceMin"/>
+                <input name="PriceMin" type="number" min="0.00" max="100" step=".01" placeholder="0" value="@Model.PriceMin" />
                 and $
-                <input name="PriceMax" type="number" min="0.00" max="100" step=".01" placeholder="100" value="@Model.PriceMax"/>
+                <input name="PriceMax" type="number" min="0.00" max="100" step=".01" placeholder="100" value="@Model.PriceMax" />
             </div>
         </div>
-        
 
-        <div id="results">
+    </form>
+</div>
+
+   <div class="flex-columns">
+        <div id="">
 
             <h2>Entrees</h2>
             <ul class="entree-items">
                 @{
-                    int inte = 0;
+                    int inter = 0;
                     foreach (IOrderItem i in Model.Menu)
                     {
-                        if (i is CowboyCafe.Data.Entrees.Entree e)
+                        if (i is CowboyCafe.Data.Entree e)
                         {
-                            inte++;
+                            inter++;
                             <li>
                                 <div class="entree-details">
                                     <h3>@i.Name</h3>
@@ -80,13 +83,14 @@
                         }
                     }
 
-                    if (inte == 0)
+                    if (inter == 0)
                     {
                         <li>No entrees fit the search criteria</li>
                     }
                 }
             </ul>
-
+            </div>
+       <div>
 
             <h2>Sides</h2>
             <ul class="side-items">
@@ -94,7 +98,7 @@
                     inte = 0;
                     foreach (IOrderItem i in Model.Menu)
                     {
-                        if (i is CowboyCafe.Data.Sides.Side)
+                        if (i is CowboyCafe.Data.Side)
                         {
                             inte++;
                             <li>
@@ -113,14 +117,27 @@
                     }
                 }
             </ul>
+           </div>
+
+       <div>
 
             <h2>Drinks</h2>
+            <div class="soda-flavors">
+                <h3>Soda Flavors</h3>
+                <ul>
+                    <li>Birch Soda</li>
+                    <li>Cream Soda</li>
+                    <li>Orange Soda</li>
+                    <li>Root Beer</li>
+                    <li>Sarsparilla</li>
+                </ul>
+            </div>
             <ul class="drink-items">
                 @{
                     inte = 0;
                     foreach (IOrderItem i in Model.Menu)
                     {
-                        if (i is CowboyCafe.Data.Drinks.Drink)
+                        if (i is CowboyCafe.Data.Drink)
                         {
                             inte++;
                             <li>
@@ -141,5 +158,4 @@
                 }
             </ul>
         </div>
-    </form>
-</div>
+    </div>
